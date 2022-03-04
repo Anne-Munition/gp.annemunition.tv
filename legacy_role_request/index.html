@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Armory Legacy Role Request</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+    rel="stylesheet"
+  />
+</head>
+<style>
+  html,
+  body {
+    background-color: #121212;
+  }
+
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="app" v-cloak>
+  <v-app>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-row justify="center" class="mb-10">
+              <div class="text-h2 mt-10" style="color: #f9d81b">
+                Armory Legacy Role Request
+              </div>
+            </v-row>
+            <v-row justify="center" no-gutters>
+              <v-col cols="6">
+                <div>
+                  <p class="text-body-1 text-center">
+                    Use this form to request the legacy role in Discord.
+                  </p>
+                  <p class="text-body-1 text-center">
+                    This role is offered to prior subs that have become a
+                    loving part of the community, but are not able to
+                    maintain a subscription for various reasons.
+                  </p>
+                  <p class="text-body-1 text-center">
+                    This request will be sent to the moderators for review
+                    and may be denied for previous behavior or misconduct in
+                    Discord.
+                  </p>
+                  <p class="text-body-1 text-center">
+                    If your request is denied and you feel strongly against
+                    the decision, feel free to contact Anne directly.
+                  </p>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row justify="center">
+              <v-col cols="6">
+                <v-form lazy-validation ref="form">
+                  <div>
+                    <v-btn color="#5865F2" @click="discordAuth">
+                      Connect to Discord
+                    </v-btn>
+                    <v-text-field
+                      v-model="body.discordName"
+                      :rules="required"
+                      outlined
+                      label="Discord Name"
+                      full-width
+                      disabled
+                    ></v-text-field>
+                  </div>
+                  <div>
+                    <v-btn color="#6441a5" @click="twitchAuth">
+                      Connect to Twitch
+                    </v-btn>
+                    <v-text-field
+                      v-model="body.twitchName"
+                      :rules="required"
+                      outlined
+                      label="Twitch Name"
+                      full-width
+                      disabled
+                    ></v-text-field>
+                    <v-row class="mt-4">
+                      <v-spacer></v-spacer>
+                      <v-btn @click="submit()" color="green">
+                        Submit
+                        <v-icon right>mdi-email-send</v-icon>
+                      </v-btn>
+                    </v-row>
+                  </div>
+                </v-form>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-dialog v-model="success" max-width="320">
+        <v-card color="green darken-3">
+          <v-card-title class="headline">Thank You</v-card-title>
+          <v-card-text
+          >Your request has been sent successfully.
+          </v-card-text
+          >
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="error" max-width="320">
+        <v-card color="red darken-3">
+          <v-card-title class="headline">Error</v-card-title>
+          <v-card-text
+          >There was an error with this request. Please try
+            again.
+          </v-card-text
+          >
+        </v-card>  
+      </v-dialog>
+    </v-main>
+  </v-app>
+</div>
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+<script>
+  const callbackUrl = window.location.href.includes('localhost')
+    ? 'http://localhost:63342/gp.annemunition.tv/legacy_role_request'
+    : 'https://pages.dbkynd.com/legacy_role_request'
+
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify({
+      theme: {dark: true},
+    }),
+
+    data() {
+      return {
+        body: {
+          discordName: null,
+          discordId: null,
+          twitchName: null,
+          twitchId: null,
+        },
+        success: false,
+        error: false,
+        sending: false,
+      }
+    },
+
+    computed: {
+      required() {
+        return [(v) => !!v || 'Required']
+      },
+    },
+
+    mounted() {
+      const fragment = new URLSearchParams(window.location.hash.slice(1))
+      let state = fragment.get('state')
+
+      if (!state) return
+      if (
+        localStorage.getItem('oauth-state') !==
+        atob(decodeURIComponent(state))
+      ) {
+        this.error = true
+        return
+      }
+
+      const {flow, body} = JSON.parse(atob(decodeURIComponent(state)))
+      console.log(flow)
+      console.log(body)
+
+      Object.assign(this.body, body)
+
+      const [accessToken, tokenType] = [
+        fragment.get('access_token'),
+        fragment.get('token_type'),
+      ]
+      console.log(tokenType, accessToken)
+      if (!accessToken) {
+        this.error = true
+        return
+      }
+
+      if (flow === 'discord') {
+        axios
+          .get('https://discord.com/api/users/@me', {
+            headers: {
+              authorization: `${tokenType} ${accessToken}`,
+            },
+          })
+          .then(({data}) => {
+            const {username, discriminator, id} = data
+            this.body.discordName = `${username}#${discriminator}`
+            this.body.discordId = id
+          })
+          .catch(() => {
+            this.error = true
+          })
+      } else if (flow === 'twitch') {
+        axios
+          .get('https://id.twitch.tv/oauth2/validate', {
+            headers: {
+              authorization: `OAuth ${accessToken}`,
+            },
+          })
+          .then(({data: token}) => {
+            axios
+              .get('https://api.twitch.tv/helix/users', {
+                query: {
+                  id: token.user_id,
+                },
+                headers: {
+                  'Client-ID': token.client_id,
+                  authorization: `Bearer ${accessToken}`,
+                },
+              })
+              .then(({data}) => {
+                const {login, display_name} = data.data[0]
+                this.body.twitchName = display_name || login
+              })
+              .catch(() => {
+                this.body.twitchName = token.login
+              })
+              .finally(() => {
+                this.body.twitchId = token.user_id
+              })
+          })
+          .catch(() => {
+            this.error = true
+          })
+      }
+    },
+
+    methods: {
+      generateRandomString() {
+        let randomString = ''
+        const randomNumber = Math.floor(Math.random() * 10)
+
+        for (let i = 0; i < 20 + randomNumber; i++) {
+          randomString += String.fromCharCode(
+            33 + Math.floor(Math.random() * 94)
+          )
+        }
+
+        return randomString
+      },
+
+      discordAuth() {
+        const state = {
+          flow: 'discord',
+          slug: this.generateRandomString(),
+          body: this.body,
+        }
+        localStorage.setItem('oauth-state', JSON.stringify(state))
+        window.location = `https://discord.com/api/oauth2/authorize?client_id=168986688536707072&redirect_uri=${encodeURIComponent(
+          callbackUrl
+        )}&response_type=token&scope=identify&state=${encodeURIComponent(
+          btoa(JSON.stringify(state))
+        )}`
+      },
+
+      twitchAuth() {
+        const state = {
+          flow: 'twitch',
+          slug: this.generateRandomString(),
+          body: this.body,
+        }
+        localStorage.setItem('oauth-state', JSON.stringify(state))
+        window.location = `https://id.twitch.tv/oauth2/authorize?client_id=t79tq8gm1fq9aj2vxg9rcqfttxe1svv&redirect_uri=${encodeURIComponent(
+          callbackUrl
+        )}&response_type=token&scope=&state=${encodeURIComponent(
+          btoa(JSON.stringify(state))
+        )}`
+      },
+
+      submit() {
+        if (!this.$refs.form.validate()) return
+        this.sending = true
+
+        axios
+          .post(`/legacy_role_request`, {...this.body})
+          .then(this.onSuccess)
+          .catch(this.onError)
+          .finally(() => {
+            this.sending = false
+          })
+      },
+
+      onSuccess() {
+        this.success = true
+        setTimeout(() => {
+          this.$refs.form.reset()
+          this.success = false
+        }, 2000)
+      },
+
+      onError() {
+        this.error = true
+        setTimeout(() => {
+          this.error = false
+        }, 2000)
+      },
+    },
+  })
+</script>
+</body>
+</html>
