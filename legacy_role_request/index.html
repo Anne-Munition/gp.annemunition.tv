@@ -290,7 +290,10 @@
             this.sending = true;
 
             axios
-              .post(`/legacy_role_request`, { ...this.body })
+              .post(
+                "https://rgt0seclo4.execute-api.us-west-2.amazonaws.com/prod/legacy_role_request",
+                { ...this.body }
+              )
               .then(this.onSuccess)
               .catch(this.onError)
               .finally(() => {
