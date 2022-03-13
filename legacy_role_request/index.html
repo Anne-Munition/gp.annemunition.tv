@@ -134,9 +134,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
     <script>
-      const callbackUrl = window.location.href.includes("localhost")
-        ? "http://localhost:63342/gp.annemunition.tv/legacy_role_request"
-        : "https://pages.dbkynd.com/legacy_role_request";
+      const dev = window.location.href.includes("localhost");
+      const callbackUrl = dev
+        ? "http://localhost:63342/pages.annemunition.tv/legacy_role_request"
+        : "https://pages.annemunition.tv/legacy_role_request";
+      const postUrl = 'https://bot.annemunition.tv/legacy_role_request'
 
       new Vue({
         el: "#app",
@@ -178,16 +180,12 @@
           }
 
           const { flow, body } = JSON.parse(atob(decodeURIComponent(state)));
-          console.log(flow);
-          console.log(body);
-
           Object.assign(this.body, body);
 
           const [accessToken, tokenType] = [
             fragment.get("access_token"),
             fragment.get("token_type"),
           ];
-          console.log(tokenType, accessToken);
           if (!accessToken) {
             this.error = true;
             return;
@@ -290,10 +288,7 @@
             this.sending = true;
 
             axios
-              .post(
-                "https://rgt0seclo4.execute-api.us-west-2.amazonaws.com/prod/legacy_role_request",
-                { ...this.body }
-              )
+              .post(postUrl, { ...this.body, dev })
               .then(this.onSuccess)
               .catch(this.onError)
               .finally(() => {
