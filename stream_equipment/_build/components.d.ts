@@ -9,6 +9,5 @@ declare module 'vue' {
   export interface GlobalComponents {
     AudioTab: typeof import('./src/components/AudioTab.vue')['default']
     HardwareTab: typeof import('./src/components/HardwareTab.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
   }
 }
