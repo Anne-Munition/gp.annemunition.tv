@@ -1,8 +1,11 @@
 export const streamingPc: PC = {
   case: {
     name: 'SilverStone RM44',
-    image: '',
-    url: 'https://www.amazon.com/dp/B0BFC8FZ8B'
+    image: 'https://m.media-amazon.com/images/I/71WEd+yCYbL.jpg',
+    url: 'https://www.amazon.com/dp/B0BFC8FZ8B',
+    posX: 200,
+    posY:300,
+    height: 100,
   },
   cpu: {
     name: 'AMD Ryzen 9 3950X',

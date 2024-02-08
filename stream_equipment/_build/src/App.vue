@@ -5,9 +5,12 @@
         v-model="tab"
         bg-color="primary"
         fixed-tabs
+        id="header"
       >
-        <v-tab value="hardware">Hardware</v-tab>
-        <v-tab value="audio">Audio</v-tab>
+        <v-tab value="hardware" prepend-icon="mdi-sitemap">Hardware Chart</v-tab>
+        <v-tab value="audio" prepend-icon="mdi-audio-input-stereo-minijack">Audio Chart</v-tab>
+        <v-tab value="gamingpc" prepend-icon="mdi-controller">Gaming PC</v-tab>
+        <v-tab value="streamingpc" prepend-icon="mdi-application-braces">Streaming PC</v-tab>
       </v-tabs>
 
       <v-window v-model="tab">
@@ -18,6 +21,14 @@
         <v-window-item value="audio">
           <AudioTab />
         </v-window-item>
+
+        <v-window-item value="gamingpc">
+          <GamingPcTab />
+        </v-window-item>
+
+        <v-window-item value="streamingpc">
+          <StreamingPcTab />
+        </v-window-item>
       </v-window>
     </v-main>
   </v-app>
@@ -27,6 +38,8 @@
 import {ref} from "vue";
 import HardwareTab from "@/components/HardwareTab.vue";
 import AudioTab from "@/components/AudioTab.vue";
+import GamingPcTab from "@/components/GamingPcTab.vue";
+import StreamingPcTab from "@/components/StreamingPcTab.vue";
 
 const tab = ref('hardware')
 </script>

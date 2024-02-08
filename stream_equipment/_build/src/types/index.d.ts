@@ -2,6 +2,9 @@ interface Item {
   name: string;
   image: string;
   url: string;
+  posX?: number;
+  posY?: number;
+  height?: number;
 }
 
 interface PC {
@@ -15,4 +18,3 @@ interface PC {
   psu: Item;
   other: Item[]
 }
-

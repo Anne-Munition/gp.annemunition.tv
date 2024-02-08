@@ -8,6 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AudioTab: typeof import('./src/components/AudioTab.vue')['default']
+    GamingPcTab: typeof import('./src/components/GamingPcTab.vue')['default']
     HardwareTab: typeof import('./src/components/HardwareTab.vue')['default']
+    ItemComponent: typeof import('./src/components/ItemComponent.vue')['default']
+    StreamingPcTab: typeof import('./src/components/StreamingPcTab.vue')['default']
   }
 }
