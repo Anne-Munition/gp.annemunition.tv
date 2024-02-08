@@ -2,9 +2,10 @@ interface Item {
   name: string;
   image: string;
   url: string;
-  posX?: number;
-  posY?: number;
-  height?: number;
+  amazonId: string;
+  posX: number;
+  posY: number;
+  icon: string;
 }
 
 interface PC {
@@ -16,5 +17,5 @@ interface PC {
   storage: Item[];
   gpu: Item;
   psu: Item;
-  other: Item[]
+  other: Item[];
 }

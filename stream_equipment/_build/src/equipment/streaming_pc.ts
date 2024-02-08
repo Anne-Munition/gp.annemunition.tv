@@ -1,64 +1,114 @@
 export const streamingPc: PC = {
   case: {
     name: 'SilverStone RM44',
-    image: 'https://m.media-amazon.com/images/I/71WEd+yCYbL.jpg',
+    image: 'https://m.media-amazon.com/images/I/71WEd+yCYbL._AC_SL1500_.jpg',
     url: 'https://www.amazon.com/dp/B0BFC8FZ8B',
-    posX: 200,
-    posY:300,
-    height: 100,
+    amazonId: 'B0BFC8FZ8B',
+    posX: 438,
+    posY: 460,
+    icon: 'desktop-tower',
   },
   cpu: {
     name: 'AMD Ryzen 9 3950X',
-    image: '',
-    url: 'https://amzn.to/371xQMt'
+    image: 'https://m.media-amazon.com/images/I/7122uH4-hfL._AC_SL1121_.jpg',
+    url: 'https://amzn.to/371xQMt',
+    amazonId: 'B07ZTYKLZW',
+    posX: 721,
+    posY: 322,
+    icon: 'cpu-64-bit',
   },
   cooler: {
     name: 'NZXT Kraken X63 AIO Liquid Cooler',
-    image: '',
-    url: 'https://amzn.to/2FwPK15'
+    image: 'https://m.media-amazon.com/images/I/71dlZ0vqmxL._SL1500_.jpg',
+    url: 'https://amzn.to/2FwPK15',
+    amazonId: 'B082DYR132',
+    posX: 1133,
+    posY: 87,
+    icon: 'fan',
   },
   motherboard: {
     name: 'ASUS ROG Strix X570 Crosshair VIII Hero',
-    image: '',
-    url: 'https://amzn.to/3ku4CfF'
+    image: 'https://m.media-amazon.com/images/I/61-7KxpmIEL._AC_SL1000_.jpg',
+    url: 'https://amzn.to/3ku4CfF',
+    amazonId: 'B07SZXBTNW',
+    posX: 805,
+    posY: 553,
+    icon: 'brain',
   },
   memory: {
     name: 'Corsair Vengeance RGB Pro (4x16GB)',
-    image: '',
-    url: 'https://amzn.to/2QZU2kh'
+    image: 'https://m.media-amazon.com/images/I/61TMdiJy72L._AC_SL1200_.jpg',
+    url: 'https://amzn.to/2QZU2kh',
+    amazonId: 'B07GSK5782',
+    posX: 802,
+    posY: 225,
+    icon: 'memory',
   },
   storage: [
     {
       name: 'Intel Optane 905p 960GB SSD',
-      image: '',
-      url: 'https://amzn.to/2xoAqMM'
+      image: 'https://m.media-amazon.com/images/I/61KuqHZ-anL._AC_SL1280_.jpg',
+      url: 'https://amzn.to/2xoAqMM',
+      amazonId: 'B07CVNS851',
+      posX: 200,
+      posY: 300,
+      icon: 'harddisk',
     },
     {
       name: 'Seagate Barracuda Pro 10TB HDD',
-      image: '',
-      url: 'https://amzn.to/2QLsmhd'
-    }
+      image: 'https://m.media-amazon.com/images/I/71DmtkEDt5L._AC_SL1500_.jpg',
+      url: 'https://amzn.to/2QLsmhd',
+      amazonId: 'B01IA9H22Q',
+      posX: 855,
+      posY: 323,
+      icon: 'harddisk',
+    },
   ],
   gpu: {
     name: 'Gigabyte Geforce RTX 2080 Ti Turbo',
-    image: '',
-    url: 'https://amzn.to/32sccB0'
+    image: 'https://m.media-amazon.com/images/I/71QYE3w6zPL._AC_SL1500_.jpg',
+    url: 'https://amzn.to/32sccB0',
+    amazonId: 'B083DT8Q9L',
+    posX: 594,
+    posY: 492,
+    icon: 'expansion-card',
   },
   psu: {
     name: 'NZXT C1000 Gold',
-    image: '',
-    url: 'https://www.amazon.com/dp/B09YZ33Z46'
+    image: 'https://m.media-amazon.com/images/I/51nrWKGjFwL._AC_SL1000_.jpg',
+    url: 'https://www.amazon.com/dp/B09YZ33Z46',
+    amazonId: 'B09YZ33Z46',
+    posX: 609,
+    posY: 79,
+    icon: 'power-plug',
   },
   other: [
     {
       name: 'Elgato Game Capture 4K60 Pro',
-      image: '',
-      url: 'https://amzn.to/2xUxGJR'
+      image: 'https://m.media-amazon.com/images/I/61KnGI5sUgL._AC_SL1500_.jpg',
+      url: 'https://amzn.to/2xUxGJR',
+      amazonId: 'B076ZQBN6R',
+      posX: 600,
+      posY: 588,
+      icon: 'expansion-card',
     },
     {
       name: 'Elgato Game Capture HD60 Pro',
-      image: '',
-      url: 'https://amzn.to/2xGWe8O'
-    }
-  ]
-}
+      image: 'https://m.media-amazon.com/images/I/71D7tnwLm-L._AC_SL1500_.jpg',
+      url: 'https://amzn.to/2xGWe8O',
+      amazonId: 'B015E3OT54',
+      posX: 635,
+      posY: 588,
+      icon: 'expansion-card',
+    },
+    {
+      name: 'Noctua NF-P12 redux-1700 PWM',
+      image: 'https://m.media-amazon.com/images/I/81ZUUX5VZsL._AC_SL1500_.jpg',
+      url: 'https://www.amazon.com/dp/B07CG2PGY6',
+      amazonId: 'B07CG2PGY6',
+      posX: 1092,
+      posY: 339,
+      icon: 'fan',
+    },
+  ],
+};
