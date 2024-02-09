@@ -30,13 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import AudioTab from '@/components/AudioTab.vue'
-import GamingPcTab from '@/components/GamingPcTab.vue'
-import HardwareTab from '@/components/HardwareTab.vue'
-import StreamingPcTab from '@/components/StreamingPcTab.vue'
+import { ref } from 'vue';
+import AudioTab from '@/components/AudioTab.vue';
+import GamingPcTab from '@/components/GamingPcTab.vue';
+import HardwareTab from '@/components/HardwareTab.vue';
+import StreamingPcTab from '@/components/StreamingPcTab.vue';
 
-const tab = ref('streamingpc')
+const tab = ref('streamingpc');
 </script>
 
 <style scoped></style>

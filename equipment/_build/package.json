@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "prettier": "prettier --write \"**/*.{js,ts,md,*rc,json,html,vue}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
