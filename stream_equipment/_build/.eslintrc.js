@@ -3,8 +3,9 @@ module.exports = {
   env: {
     node: true,
   },
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    sourceType: 'module',
     ecmaVersion: 2020,
   },
   plugins: ['import', '@typescript-eslint'],
