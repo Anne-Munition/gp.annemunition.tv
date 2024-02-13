@@ -35,8 +35,10 @@ import AudioTab from '@/components/AudioTab.vue';
 import GamingPcTab from '@/components/GamingPcTab.vue';
 import HardwareTab from '@/components/HardwareTab.vue';
 import StreamingPcTab from '@/components/StreamingPcTab.vue';
+import { getPrices } from '@/plugins/amazon_prices';
 
 const tab = ref('streamingpc');
+getPrices();
 </script>
 
 <style scoped></style>

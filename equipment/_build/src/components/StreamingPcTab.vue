@@ -19,7 +19,6 @@
           <v-btn
             density="compact"
             icon="mdi-plus"
-            color="#ffd800"
             v-for="item in items"
             :key="item.name"
             @click="selectItem(item)"
@@ -30,18 +29,7 @@
         </div>
       </v-col>
       <v-col cols="3">
-        <v-card v-if="selectedItem" :title="selectedItem.name">
-          <v-card-text>
-            <v-img :src="selectedItem.image"></v-img>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="#FFD800" variant="outlined" @click="openInNewTab(selectedItem.url)">
-              View on Amazon
-            </v-btn>
-            <v-spacer />
-          </v-card-actions>
-        </v-card>
+        <ItemCard :item="selectedItem" />
       </v-col>
     </v-row>
   </v-container>
@@ -50,6 +38,7 @@
 <script setup lang="ts">
 import streamingPc from '@/equipment/streaming_pc';
 import { computed, ref } from 'vue';
+import ItemCard from '@/components/ItemCard.vue';
 
 const items = computed<Item[]>(() => {
   // Turn the PC object into an iterable array
@@ -65,10 +54,6 @@ const items = computed<Item[]>(() => {
 const selectedItem = ref<Item>();
 function selectItem(item: Item) {
   selectedItem.value = item;
-}
-
-function openInNewTab(url: string) {
-  window.open(url, '_blank', 'noreferrer');
 }
 </script>
 
@@ -92,10 +77,11 @@ function openInNewTab(url: string) {
 .item-button {
   position: absolute;
   transform: translate(-50%, -50%);
-  height: 10px;
-  width: 10px;
+  background: #ffd800;
+  color: black;
 }
 .selected {
-  background: #911e95;
+  background: #911e95 !important;
+  color: white;
 }
 </style>

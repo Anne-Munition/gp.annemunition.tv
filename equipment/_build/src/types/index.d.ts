@@ -2,7 +2,7 @@ interface Item {
   name: string;
   image: string;
   url: string;
-  amazonId: string;
+  asin: string;
   posX: number;
   posY: number;
   icon: string;
