@@ -3,8 +3,8 @@ interface Item {
   image: string;
   url: string;
   asin: string;
-  posX: number;
-  posY: number;
+  top: number;
+  left: number;
   icon: string;
 }
 

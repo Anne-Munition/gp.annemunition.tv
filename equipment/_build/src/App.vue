@@ -5,7 +5,7 @@
         <v-tab value="hardware" prepend-icon="mdi-sitemap">Hardware Chart</v-tab>
         <v-tab value="audio" prepend-icon="mdi-audio-input-stereo-minijack">Audio Chart</v-tab>
         <v-tab value="gamingpc" prepend-icon="mdi-controller">Gaming PC</v-tab>
-        <v-tab value="streamingpc" prepend-icon="mdi-application-braces">Streaming PC</v-tab>
+        <v-tab value="streamingpc" prepend-icon="mdi-multicast">Streaming PC</v-tab>
       </v-tabs>
 
       <v-window v-model="tab">

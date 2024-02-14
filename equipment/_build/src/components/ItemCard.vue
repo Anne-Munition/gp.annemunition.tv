@@ -7,7 +7,7 @@
     <v-card-actions>
       <span class="price"> {{ price }}</span>
       <v-spacer />
-      <v-btn color="#FFD800" variant="outlined" @click="openInNewTab(item.url)">
+      <v-btn color="#edae15" variant="outlined" @click="openInNewTab(item.url)">
         View on Amazon
       </v-btn>
     </v-card-actions>
