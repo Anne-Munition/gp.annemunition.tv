@@ -1,7 +1,7 @@
 import axios from 'axios';
-import streamingPc from '@/equipment/streaming_pc';
-import gamingPc from '@/equipment/gaming_pc';
 import { ref } from 'vue';
+import gamingPc from '@/equipment/gaming_pc';
+import streamingPc from '@/equipment/streaming_pc';
 
 let asins: string[] = [];
 
