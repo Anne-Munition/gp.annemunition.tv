@@ -19,3 +19,9 @@ interface PC {
   psu: Item;
   other: Item[];
 }
+
+interface Cable {
+  name: string;
+  color1: string;
+  color2: string;
+}
