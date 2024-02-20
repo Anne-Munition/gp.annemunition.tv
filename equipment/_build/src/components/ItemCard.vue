@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import prices from '@/plugins/amazon_prices';
+import prices from '@/plugins/asin_price_lookup';
 
 const props = defineProps<{
   item: Item | undefined;

@@ -3,11 +3,11 @@
     <v-row>
       <v-col cols="3">
         <div
-          class="item-list pa-1"
           v-for="(item, index) in items"
           :key="item.name"
-          @click="selectedIndex = index"
+          class="item-list pa-1"
           :class="{ selected: index == selectedIndex }"
+          @click="selectedIndex = index"
         >
           <v-icon :icon="`mdi-${item.icon}`"></v-icon>
           {{ item.name }}
@@ -17,15 +17,15 @@
         <div id="pc-graphic">
           <img :src="image" alt="" />
           <v-btn
-            density="compact"
-            icon="mdi-circle-medium"
             v-for="(item, index) in items"
             :key="item.name"
-            @click="selectedIndex = index"
+            density="compact"
+            icon="mdi-circle-medium"
             class="item-button"
             :class="{ selected: index == selectedIndex }"
             :style="`top: ${item.top}%; left: ${item.left}%;`"
             size="small"
+            @click="selectedIndex = index"
           />
         </div>
       </v-col>

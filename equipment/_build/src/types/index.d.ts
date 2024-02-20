@@ -19,12 +19,3 @@ interface PC {
   psu: Item;
   other: Item[];
 }
-
-interface Line {
-  points: Point[];
-}
-
-interface Point {
-  x: number;
-  y: number;
-}
